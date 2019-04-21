@@ -36,11 +36,12 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
             invalidate()
         }
 
-    var text: String = ""
+    var text: String
+        get() = button.text.toString()
         set(value) {
-            field = value
             button.text = value
         }
+
     var textSize: Float
         get() = button.textSize
         set(value) {
@@ -117,9 +118,10 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         positionOffset: Float,
         positionOffsetPixels: Int
     ) {
-        colorChangeableArrow
-            .onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
-        button.onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
+        forEach {
+            if (it is ColorChangeable)
+                it.onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
+        }
     }
 
     override fun onPageSelected(position: Int) {
