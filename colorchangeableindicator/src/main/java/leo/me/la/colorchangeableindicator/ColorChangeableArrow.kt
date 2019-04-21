@@ -57,7 +57,7 @@ internal class ColorChangeableArrow : View, ColorChangeable {
         adapter?.run {
             colorPaint.color = color
             triangle.setBottomMidpointCoordinator(
-                width * (position + positionOffset + 1) / (count + 1),
+                width * ((position + positionOffset) * 2 + 1) / (count * 2),
                 0f
             )
             invalidate()
