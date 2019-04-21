@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
     private inner class ScreenSlidePagerAdapter(
         private val data: List<String> = listOf("Vanilla", "Chocolate", "Strawberry"),
-        private val size: IntArray = intArrayOf(15, 20, 23),
+        private val size: IntArray = intArrayOf(15, 20, 25),
         fm: FragmentManager
     ) : ColorChangeablePagerAdapter(fm) {
         override fun getCircleIndicatorSize(position: Int): Int {

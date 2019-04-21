@@ -31,5 +31,7 @@
         android:layout_width="match_parent"
         android:divider="@drawable/divider"
         android:showDividers="middle"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:layout_height="wrap_content"/>
 </merge>

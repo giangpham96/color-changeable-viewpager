@@ -28,7 +28,7 @@ internal class AnimatedCircleView : View {
                 style = Paint.Style.FILL
                 color = selectedColor
             }
-            ValueAnimator.ofInt(0, radius)
+            ValueAnimator.ofInt(radius * 2 / 3, radius)
                 .setDuration(300)
                 .apply {
                     addUpdateListener {
