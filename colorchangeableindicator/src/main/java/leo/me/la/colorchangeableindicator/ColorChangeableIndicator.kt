@@ -13,9 +13,9 @@ import androidx.core.view.forEachIndexed
 import androidx.viewpager.widget.ViewPager
 
 private val defaultIndicatorColors = listOf(
-    Color.parseColor("#CEEFFB"),
-    Color.parseColor("#2F2969"),
-    Color.parseColor("#F6EC36")
+    Color.parseColor("#45E482"),
+    Color.parseColor("#F9B72B"),
+    Color.parseColor("#43D6C5")
 )
 const val defaultTriangleWidth = 50
 const val defaultTriangleHeight = 30
