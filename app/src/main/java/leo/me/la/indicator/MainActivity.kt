@@ -18,14 +18,15 @@ class MainActivity : AppCompatActivity() {
     }
     private inner class ScreenSlidePagerAdapter(
         private val data: List<String> = listOf("Vanilla", "Chocolate", "Strawberry"),
+        private val size: IntArray = intArrayOf(15, 20, 23),
         fm: FragmentManager
     ) : ColorChangeablePagerAdapter(fm) {
         override fun getCircleIndicatorSize(position: Int): Int {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            return size[position]
         }
 
         override fun getTitle(position: Int): String {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            return data[position]
         }
 
         override fun getCount(): Int = data.size
