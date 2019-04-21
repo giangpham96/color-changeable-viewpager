@@ -1,1 +1,1 @@
-include(":app", ":whimindicatorview")
+include(":app", ":colorchangeableindicator")

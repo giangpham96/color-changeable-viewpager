@@ -1,4 +1,4 @@
-package leo.me.la.whimindicatorview
+package leo.me.la.colorchangeableindicator
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,7 +10,7 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import java.lang.IllegalStateException
 
-internal class DownArrowIndicator : View, ColorChangeable {
+internal class ColorChangeableArrow : View, ColorChangeable {
     override var viewPager: ViewPager? = null
 
     private val colorPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }

@@ -1,4 +1,4 @@
-package leo.me.la.whimindicatorview
+package leo.me.la.colorchangeableindicator
 
 import android.content.Context
 import android.util.AttributeSet

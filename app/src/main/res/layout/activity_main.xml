@@ -8,7 +8,7 @@
     tools:context=".MainActivity"
     >
 
-    <leo.me.la.whimindicatorview.WhimIndicator
+    <leo.me.la.colorchangeableindicator.ColorChangeableIndicator
         android:id="@+id/indicatorBar"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"

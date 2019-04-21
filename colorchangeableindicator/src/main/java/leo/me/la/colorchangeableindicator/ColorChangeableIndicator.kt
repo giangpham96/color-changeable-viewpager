@@ -1,4 +1,4 @@
-package leo.me.la.whimindicatorview
+package leo.me.la.colorchangeableindicator
 
 import android.animation.ArgbEvaluator
 import android.content.Context
@@ -19,12 +19,12 @@ private val defaultIndicatorColors = listOf(
 const val defaultTriangleWidth = 50
 const val defaultTriangleHeight = 30
 
-class WhimIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListener {
+class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListener {
     private val colorEvaluator = ArgbEvaluator()
 
     private lateinit var button: ColorChangeableButton
 
-    private lateinit var downArrowIndicator: DownArrowIndicator
+    private lateinit var colorChangeableArrow: ColorChangeableArrow
 
     var indicatorColors: List<Int> = defaultIndicatorColors
         set(value) {
@@ -49,7 +49,7 @@ class WhimIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListe
             if (value == null) {
                 throw IllegalArgumentException("Must pass a non-null value")
             }
-            downArrowIndicator.viewPager = value
+            colorChangeableArrow.viewPager = value
             button.viewPager = value
             field = value
             value.addOnPageChangeListener(this)
@@ -59,12 +59,12 @@ class WhimIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListe
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context.obtainStyledAttributes(attrs, R.styleable.WhimIndicator))
+        init(context.obtainStyledAttributes(attrs, R.styleable.ColorChangeableIndicator))
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
         : super(context, attrs, defStyleAttr) {
-        init(context.obtainStyledAttributes(attrs, R.styleable.WhimIndicator))
+        init(context.obtainStyledAttributes(attrs, R.styleable.ColorChangeableIndicator))
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -87,7 +87,7 @@ class WhimIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListe
         positionOffset: Float,
         positionOffsetPixels: Int
     ) {
-        downArrowIndicator
+        colorChangeableArrow
             .onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
         button.onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
     }
@@ -99,27 +99,27 @@ class WhimIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListe
         View.inflate(context, R.layout.color_changeable_indicator, this)
         isClickable = false
         isFocusable = false
-        downArrowIndicator = findViewById(R.id.downArrowIndicator)
+        colorChangeableArrow = findViewById(R.id.downArrowIndicator)
         button = findViewById(R.id.button)
 
-        text = obtainStyledAttributes.getString(R.styleable.WhimIndicator_text) ?: ""
+        text = obtainStyledAttributes.getString(R.styleable.ColorChangeableIndicator_text) ?: ""
 
-        downArrowIndicator.setTriangleHeight(
+        colorChangeableArrow.setTriangleHeight(
             obtainStyledAttributes.getDimensionPixelSize(
-                R.styleable.WhimIndicator_indicatorTriangleHeight,
+                R.styleable.ColorChangeableIndicator_indicatorTriangleHeight,
                 defaultTriangleHeight
             )
         )
 
-        downArrowIndicator.setTriangleWidth(
+        colorChangeableArrow.setTriangleWidth(
             obtainStyledAttributes.getDimensionPixelSize(
-                R.styleable.WhimIndicator_indicatorTriangleWidth,
+                R.styleable.ColorChangeableIndicator_indicatorTriangleWidth,
                 defaultTriangleWidth
             )
         )
 
         textSize = obtainStyledAttributes.getDimensionPixelSize(
-            R.styleable.WhimIndicator_textSize,
+            R.styleable.ColorChangeableIndicator_textSize,
             12.dpToPx()
         ).toFloat()
 

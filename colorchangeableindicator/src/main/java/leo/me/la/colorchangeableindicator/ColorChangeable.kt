@@ -1,4 +1,4 @@
-package leo.me.la.whimindicatorview
+package leo.me.la.colorchangeableindicator
 
 import androidx.annotation.ColorInt
 import androidx.viewpager.widget.ViewPager
