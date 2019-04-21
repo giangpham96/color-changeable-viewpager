@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="8dp"
+        android:padding="12dp"
         android:textColor="@android:color/white"
         android:stateListAnimator="@null"
         android:minHeight="0dp"
@@ -22,5 +22,14 @@
     <leo.me.la.colorchangeableindicator.ColorChangeableArrow
         android:id="@+id/downArrowIndicator"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/tabs"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:divider="@drawable/divider"
+        android:showDividers="middle"
         android:layout_height="wrap_content"/>
 </merge>

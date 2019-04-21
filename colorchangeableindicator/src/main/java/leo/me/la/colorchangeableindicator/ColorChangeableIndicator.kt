@@ -7,7 +7,9 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
+import androidx.core.view.forEachIndexed
 import androidx.viewpager.widget.ViewPager
 
 private val defaultIndicatorColors = listOf(
@@ -24,6 +26,8 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
     private lateinit var button: ColorChangeableButton
 
     private lateinit var colorChangeableArrow: ColorChangeableArrow
+
+    private lateinit var tabs: LinearLayout
 
     var indicatorColors: List<Int> = defaultIndicatorColors
         set(value) {
@@ -46,13 +50,31 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         check(viewPager.adapter != null || viewPager.adapter !is ColorChangeablePagerAdapter) {
             "$viewPager must have a ${ColorChangeablePagerAdapter::class.java.simpleName} as its adapter"
         }
-        viewPager.adapter!!.run {
-            colorChangeableArrow.adapter = this as ColorChangeablePagerAdapter
+        val adapter = viewPager.adapter as ColorChangeablePagerAdapter
+        adapter.run {
+            colorChangeableArrow.adapter = this
         }
         viewPager.run {
             addOnPageChangeListener(this@ColorChangeableIndicator)
             setCurrentItem(0, true)
         }
+        tabs.run {
+            removeAllViews()
+            for(position in 0 until adapter.count) {
+                addView(
+                    SelectableTab(context).apply {
+                        layoutParams = LayoutParams(0, WRAP_CONTENT)
+                            .apply {
+                                weight = 1f
+                            }
+                        textSize = this@ColorChangeableIndicator.textSize
+                        text = adapter.getTitle(position)
+                        circleRadius = adapter.getCircleIndicatorSize(position)
+                    }
+                )
+            }
+        }
+        onPageSelected(0)
     }
 
     constructor(context: Context) : super(context)
@@ -91,7 +113,13 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         button.onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
     }
 
-    override fun onPageSelected(position: Int) {}
+    override fun onPageSelected(position: Int) {
+        tabs.forEachIndexed { index, view ->
+            (view as SelectableTab).run {
+                view.enable(index == position)
+            }
+        }
+    }
 
     private fun init(obtainStyledAttributes: TypedArray) {
         orientation = VERTICAL
@@ -100,6 +128,7 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         isFocusable = false
         colorChangeableArrow = findViewById(R.id.downArrowIndicator)
         button = findViewById(R.id.button)
+        tabs = findViewById(R.id.tabs)
 
         text = obtainStyledAttributes.getString(R.styleable.ColorChangeableIndicator_text) ?: ""
 
