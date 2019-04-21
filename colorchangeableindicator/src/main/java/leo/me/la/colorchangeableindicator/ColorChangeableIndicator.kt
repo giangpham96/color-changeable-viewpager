@@ -89,6 +89,10 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
                         text = adapter.getTitle(position)
                         circleRadius = adapter.getCircleIndicatorSize(position)
                         selectedColor = this@ColorChangeableIndicator.selectedColor
+                        isClickable = true
+                        setOnClickListener {
+                            viewPager.setCurrentItem(position, true)
+                        }
                     }
                 )
             }
