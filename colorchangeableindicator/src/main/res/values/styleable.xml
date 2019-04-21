@@ -6,5 +6,6 @@
         <attr name="tabTextSize" format="dimension" />
         <attr name="indicatorTriangleWidth" format="dimension" />
         <attr name="indicatorTriangleHeight" format="dimension" />
+        <attr name="selectedColor" format="color" />
     </declare-styleable>
 </resources>

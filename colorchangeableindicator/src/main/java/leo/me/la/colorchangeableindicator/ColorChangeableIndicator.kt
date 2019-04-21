@@ -56,6 +56,14 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
             }
         }
 
+    var selectedColor: Int = enableColor
+        set(value) {
+            field = value
+            tabs.forEach {
+                (it as SelectableTab).selectedColor = value
+            }
+        }
+
     fun integrateWithViewPager(viewPager: ViewPager) {
         check(viewPager.adapter != null || viewPager.adapter !is ColorChangeablePagerAdapter) {
             "$viewPager must have a ${ColorChangeablePagerAdapter::class.java.simpleName} as its adapter"
@@ -80,6 +88,7 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
                         textSize = this@ColorChangeableIndicator.tabTextSize
                         text = adapter.getTitle(position)
                         circleRadius = adapter.getCircleIndicatorSize(position)
+                        selectedColor = this@ColorChangeableIndicator.selectedColor
                     }
                 )
             }
@@ -166,6 +175,11 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
             R.styleable.ColorChangeableIndicator_tabTextSize,
             12.dpToPx()
         ).toFloat()
+
+        selectedColor = obtainStyledAttributes.getColor(
+            R.styleable.ColorChangeableIndicator_selectedColor,
+            enableColor
+        )
 
         obtainStyledAttributes.recycle()
     }
