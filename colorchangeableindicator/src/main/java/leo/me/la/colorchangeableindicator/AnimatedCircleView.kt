@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.graphics.PointF
 import android.graphics.Canvas
-import android.graphics.Color
 
 
 private const val defaultRadius = 30

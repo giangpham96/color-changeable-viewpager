@@ -2,7 +2,6 @@ package leo.me.la.colorchangeableindicator
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.viewpager.widget.ViewPager
 import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.RippleDrawable
