@@ -9,7 +9,6 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
-import java.lang.IllegalArgumentException
 
 private val defaultIndicatorColors = listOf(
     Color.parseColor("#CEEFFB"),
@@ -43,18 +42,18 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
             button.setTextSize(TypedValue.COMPLEX_UNIT_PX, value)
         }
 
-    override var viewPager: ViewPager? = null
-        set(value) {
-            field?.removeOnPageChangeListener(this)
-            if (value == null) {
-                throw IllegalArgumentException("Must pass a non-null value")
-            }
-            colorChangeableArrow.viewPager = value
-            button.viewPager = value
-            field = value
-            value.addOnPageChangeListener(this)
-            value.setCurrentItem(0, true)
+    fun integrateWithViewPager(viewPager: ViewPager) {
+        check(viewPager.adapter != null || viewPager.adapter !is ColorChangeablePagerAdapter) {
+            "${viewPager} must have a ${ColorChangeablePagerAdapter::class.java.simpleName} as its adapter"
         }
+        viewPager.adapter!!.run {
+            colorChangeableArrow.adapter = this as ColorChangeablePagerAdapter
+        }
+        viewPager.run {
+            addOnPageChangeListener(this@ColorChangeableIndicator)
+            setCurrentItem(0, true)
+        }
+    }
 
     constructor(context: Context) : super(context)
 

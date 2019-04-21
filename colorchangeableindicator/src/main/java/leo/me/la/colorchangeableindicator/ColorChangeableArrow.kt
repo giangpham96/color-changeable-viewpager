@@ -7,11 +7,9 @@ import android.graphics.Path
 import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.View
-import androidx.viewpager.widget.ViewPager
-import java.lang.IllegalStateException
 
 internal class ColorChangeableArrow : View, ColorChangeable {
-    override var viewPager: ViewPager? = null
+    var adapter: ColorChangeablePagerAdapter? = null
 
     private val colorPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }
 
@@ -56,14 +54,14 @@ internal class ColorChangeableArrow : View, ColorChangeable {
         positionOffset: Float,
         positionOffsetPixels: Int
     ) {
-        colorPaint.color = color
-        if (viewPager!!.adapter == null)
-            throw IllegalStateException("Viewpager must have an adapter")
-        triangle.setBottomMidpointCoordinator(
-            width * (position + positionOffset + 1) / (viewPager!!.adapter!!.count + 1),
-            0f
-        )
-        invalidate()
+        adapter?.run {
+            colorPaint.color = color
+            triangle.setBottomMidpointCoordinator(
+                width * (position + positionOffset + 1) / (count + 1),
+                0f
+            )
+            invalidate()
+        }
     }
 
     fun setTriangleWidth(width: Int) {

@@ -13,7 +13,6 @@ import android.widget.Button
 import java.util.Arrays
 
 internal class ColorChangeableButton : Button, ColorChangeable {
-    override var viewPager: ViewPager? = null
 
     constructor(context: Context?) : super(context)
 
