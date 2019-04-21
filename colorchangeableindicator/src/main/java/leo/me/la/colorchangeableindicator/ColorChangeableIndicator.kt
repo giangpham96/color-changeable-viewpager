@@ -44,7 +44,7 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
 
     fun integrateWithViewPager(viewPager: ViewPager) {
         check(viewPager.adapter != null || viewPager.adapter !is ColorChangeablePagerAdapter) {
-            "${viewPager} must have a ${ColorChangeablePagerAdapter::class.java.simpleName} as its adapter"
+            "$viewPager must have a ${ColorChangeablePagerAdapter::class.java.simpleName} as its adapter"
         }
         viewPager.adapter!!.run {
             colorChangeableArrow.adapter = this as ColorChangeablePagerAdapter
