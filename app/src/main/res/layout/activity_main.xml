@@ -27,13 +27,13 @@
 
     <leo.me.la.colorchangeableindicator.ColorChangeableIndicator
         android:id="@+id/indicatorBar"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:text="Show more details"
         app:textSize="14sp"
         />
