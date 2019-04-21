@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    >
+    <leo.me.la.whimindicatorview.ColorChangeableButton
+        android:id="@+id/button"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textColor="@android:color/white"
+        android:stateListAnimator="@null"
+        android:minHeight="0dp"
+        tools:text="Text"/>
+    <leo.me.la.whimindicatorview.DownArrowIndicator
+        android:id="@+id/downArrowIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</merge>
