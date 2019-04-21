@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
+import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
 import androidx.viewpager.widget.ViewPager
 
@@ -40,10 +41,18 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
             field = value
             button.text = value
         }
-    var textSize: Float = 12.dpToPx().toFloat()
+    var textSize: Float
+        get() = button.textSize
+        set(value) {
+            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, value)
+        }
+
+    var tabTextSize: Float = 12.dpToPx().toFloat()
         set(value) {
             field = value
-            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, value)
+            tabs.forEach {
+                (it as SelectableTab).textSize = value
+            }
         }
 
     fun integrateWithViewPager(viewPager: ViewPager) {
@@ -67,7 +76,7 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
                             .apply {
                                 weight = 1f
                             }
-                        textSize = this@ColorChangeableIndicator.textSize
+                        textSize = this@ColorChangeableIndicator.tabTextSize
                         text = adapter.getTitle(position)
                         circleRadius = adapter.getCircleIndicatorSize(position)
                     }
@@ -148,6 +157,11 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
 
         textSize = obtainStyledAttributes.getDimensionPixelSize(
             R.styleable.ColorChangeableIndicator_textSize,
+            12.dpToPx()
+        ).toFloat()
+
+        tabTextSize = obtainStyledAttributes.getDimensionPixelSize(
+            R.styleable.ColorChangeableIndicator_tabTextSize,
             12.dpToPx()
         ).toFloat()
 

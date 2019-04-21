@@ -19,6 +19,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:text="Show more details"
+        app:textSize="14sp"
         />
 
     <androidx.viewpager.widget.ViewPager
