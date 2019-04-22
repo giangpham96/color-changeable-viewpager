@@ -38,10 +38,13 @@
         app:textSize="14sp"
         />
 
-    <androidx.viewpager.widget.ViewPager
+    <leo.me.la.colorchangeableindicator.ColorChangeableViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toTopOf="@+id/indicatorBar"
         app:layout_constraintTop_toTopOf="parent"
         />
