@@ -20,9 +20,9 @@ private val dataSource = listOf(
             "Pay for each trip as you go",
             false,
             listOf(
-                Benefit(android.R.drawable.ic_media_play, "Public transport"),
-                Benefit(android.R.drawable.ic_media_pause, "Taxi rides"),
-                Benefit(android.R.drawable.ic_media_next, "Cars")
+                Benefit(R.drawable.ic_hsl, "Public transport"),
+                Benefit(R.drawable.ic_taxi, "Taxi rides"),
+                Benefit(R.drawable.ic_car, "Cars")
             )
         ),
         15
@@ -36,11 +36,10 @@ private val dataSource = listOf(
             null,
             true,
             listOf(
-                Benefit(android.R.drawable.ic_media_play, "HSL 30-day ticket"),
-                Benefit(android.R.drawable.ic_media_pause, "Taxi rides for €10", "5 km radius"),
-                Benefit(android.R.drawable.ic_media_previous, "Cars from €49 /day"),
-                Benefit(android.R.drawable.ic_media_next, "City bikes", "Helsinki and " +
-                    "Espoo, 30 mins")
+                Benefit(R.drawable.ic_hsl, "HSL 30-day ticket"),
+                Benefit(R.drawable.ic_taxi, "Taxi rides for €10", "5 km radius"),
+                Benefit(R.drawable.ic_car, "Cars from €49 /day"),
+                Benefit(R.drawable.ic_bike, "City bikes", "Helsinki and Espoo, 30 mins")
             )
         ),
         20
@@ -53,11 +52,10 @@ private val dataSource = listOf(
             "Go unlimited",
             false,
             listOf(
-                Benefit(android.R.drawable.ic_media_play, "Unlimited public transport"),
-                Benefit(android.R.drawable.ic_media_pause, "Unlimited Taxi rides", "5 km radius"),
-                Benefit(android.R.drawable.ic_media_previous, "Unlimited car use"),
-                Benefit(android.R.drawable.ic_media_next, "Unlimited City bikes", "first " +
-                    "30 mins")
+                Benefit(R.drawable.ic_hsl, "Unlimited public transport"),
+                Benefit(R.drawable.ic_taxi, "Unlimited Taxi rides", "5 km radius"),
+                Benefit(R.drawable.ic_car, "Unlimited car use"),
+                Benefit(R.drawable.ic_bike, "Unlimited City bikes", "first 30 mins")
             )
         ),
         20
