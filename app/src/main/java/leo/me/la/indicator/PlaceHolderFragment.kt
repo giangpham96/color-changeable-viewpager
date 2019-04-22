@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_place_holder.offer
 import kotlinx.android.synthetic.main.fragment_place_holder.textview
 
-private const val ARG_TEXT = "text"
+private const val ARG_SUBS = "subscription"
 
 class PlaceHolderFragment : Fragment() {
-    private lateinit var text: String
+    private lateinit var subscription: Subscription
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        text = arguments!!.getString(ARG_TEXT)!!
+        subscription = arguments!!.getParcelable(ARG_SUBS)!!
     }
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class PlaceHolderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textview.text = text
+        textview.text = subscription.name
         offer.post {
             val w = offer.measuredWidth
             val h = offer.measuredHeight
@@ -45,10 +45,10 @@ class PlaceHolderFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(text: String) =
+        fun newInstance(subscription: Subscription) =
             PlaceHolderFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_TEXT, text)
+                    putParcelable(ARG_SUBS, subscription)
                 }
             }
     }

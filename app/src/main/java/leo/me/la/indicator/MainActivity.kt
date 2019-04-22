@@ -2,11 +2,67 @@ package leo.me.la.indicator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.indicatorBar
 import kotlinx.android.synthetic.main.activity_main.viewPager
 import leo.me.la.colorchangeableindicator.ColorChangeablePagerAdapter
+
+private val dataSource = listOf(
+    Pair(
+        Subscription(
+            "Whim to Go",
+            0,
+            "per month",
+            "Pay for each trip as you go",
+            false,
+            listOf(
+                Benefit(android.R.drawable.ic_media_play, "Public transport"),
+                Benefit(android.R.drawable.ic_media_pause, "Taxi rides"),
+                Benefit(android.R.drawable.ic_media_next, "Cars")
+            )
+        ),
+        15
+    ),
+    Pair(
+        Subscription(
+            "Whim Urban 30",
+            49,
+            "For first 30 days (reg. €62)\nPlan renews automatically at the regular price" +
+                ".\nAny discounts will be applied when you pay.",
+            null,
+            true,
+            listOf(
+                Benefit(android.R.drawable.ic_media_play, "HSL 30-day ticket"),
+                Benefit(android.R.drawable.ic_media_pause, "Taxi rides for €10", "5 km radius"),
+                Benefit(android.R.drawable.ic_media_previous, "Cars from €49 /day"),
+                Benefit(android.R.drawable.ic_media_next, "City bikes", "Helsinki and " +
+                    "Espoo, 30 mins")
+            )
+        ),
+        20
+    ),
+    Pair(
+        Subscription(
+            "Whim Unlimited",
+            499,
+            "renews automatically every month",
+            "Go unlimited",
+            false,
+            listOf(
+                Benefit(android.R.drawable.ic_media_play, "Unlimited public transport"),
+                Benefit(android.R.drawable.ic_media_pause, "Unlimited Taxi rides", "5 km radius"),
+                Benefit(android.R.drawable.ic_media_previous, "Unlimited car use"),
+                Benefit(android.R.drawable.ic_media_next, "Unlimited City bikes", "first " +
+                    "30 mins")
+            )
+        ),
+        20
+    )
+)
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,21 +73,37 @@ class MainActivity : AppCompatActivity() {
         indicatorBar.integrateWithViewPager(viewPager)
     }
     private inner class ScreenSlidePagerAdapter(
-        private val data: List<String> = listOf("Vanilla", "Chocolate", "Strawberry"),
-        private val size: IntArray = intArrayOf(15, 20, 25),
+        private val data: List<Pair<Subscription, Int>> = dataSource,
         fm: FragmentManager
     ) : ColorChangeablePagerAdapter(fm) {
         override fun getCircleIndicatorSize(position: Int): Int {
-            return size[position]
+            return data[position].second
         }
 
         override fun getTitle(position: Int): String {
-            return data[position]
+            return data[position].first.name
         }
 
         override fun getCount(): Int = data.size
 
         override fun getItem(position: Int): Fragment
-            = PlaceHolderFragment.newInstance(data[position])
+            = PlaceHolderFragment.newInstance(data[position].first)
     }
 }
+
+@Parcelize
+data class Subscription(
+    val name: String,
+    val price: Int,
+    val description: String,
+    val highlightText: String?,
+    val isSpecialOffer: Boolean,
+    val benefits: List<Benefit>
+) : Parcelable
+
+@Parcelize
+data class Benefit(
+    @DrawableRes val icon: Int,
+    val content: String,
+    val extraInfo: String? = null
+) : Parcelable
