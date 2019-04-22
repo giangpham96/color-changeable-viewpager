@@ -28,10 +28,10 @@ class ColorChangeableViewPager : ViewPager, ColorChangeable {
         val nextPageColor = indicatorColors[nextPage % indicatorColors.size]
 
         val color = colorEvaluator.evaluate(positionOffset, currentPageColor, nextPageColor) as Int
-        onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
+        onColorChanged(color, position, positionOffset, positionOffsetPixels)
     }
 
-    override fun onColorChangedWhileScrolling(
+    override fun onColorChanged(
         color: Int,
         position: Int,
         positionOffset: Float,

@@ -4,7 +4,7 @@ import androidx.annotation.ColorInt
 
 internal interface ColorChangeable {
 
-    fun onColorChangedWhileScrolling(
+    fun onColorChanged(
         @ColorInt color: Int,
         position: Int,
         positionOffset: Float,

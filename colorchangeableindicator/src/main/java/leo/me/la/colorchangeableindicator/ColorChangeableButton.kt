@@ -20,7 +20,7 @@ internal class ColorChangeableButton : Button, ColorChangeable {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
         : super(context, attrs, defStyleAttr)
 
-    override fun onColorChangedWhileScrolling(
+    override fun onColorChanged(
         color: Int,
         position: Int,
         positionOffset: Float,

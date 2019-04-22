@@ -48,7 +48,7 @@ internal class ColorChangeableArrow : View, ColorChangeable {
         triangle.draw(canvas, height)
     }
 
-    override fun onColorChangedWhileScrolling(
+    override fun onColorChanged(
         color: Int,
         position: Int,
         positionOffset: Float,

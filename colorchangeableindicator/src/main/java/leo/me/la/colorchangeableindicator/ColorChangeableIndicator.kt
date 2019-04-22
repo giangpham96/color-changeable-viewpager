@@ -118,14 +118,14 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         val nextPageColor = indicatorColors[nextPage % indicatorColors.size]
 
         val color = colorEvaluator.evaluate(positionOffset, currentPageColor, nextPageColor) as Int
-        onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
+        onColorChanged(color, position, positionOffset, positionOffsetPixels)
     }
 
     override fun setOnClickListener(l: OnClickListener) = button.setOnClickListener(l)
 
     override fun onPageScrollStateChanged(state: Int) {}
 
-    override fun onColorChangedWhileScrolling(
+    override fun onColorChanged(
         color: Int,
         position: Int,
         positionOffset: Float,
@@ -133,7 +133,7 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
     ) {
         forEach {
             if (it is ColorChangeable)
-                it.onColorChangedWhileScrolling(color, position, positionOffset, positionOffsetPixels)
+                it.onColorChanged(color, position, positionOffset, positionOffsetPixels)
         }
     }
 
