@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.fragment_place_holder.offer
 import kotlinx.android.synthetic.main.fragment_place_holder.textview
 
@@ -29,17 +30,22 @@ class PlaceHolderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textview.text = subscription.name
-        offer.post {
-            val w = offer.measuredWidth
-            val h = offer.measuredHeight
-            val sqrt2 = Math.sqrt(2.0).toFloat()
-            offer.animate()
-                .apply {
-                    duration = 0
-                }
-                .translationY((w - (1 + sqrt2) * h) / (2 * sqrt2))
-                .translationX(((sqrt2 - 1) * w + h) / (2 * sqrt2))
-                .rotation(45f)
+        if (subscription.isSpecialOffer) {
+            offer.isVisible = true
+            offer.post {
+                val w = offer.measuredWidth
+                val h = offer.measuredHeight
+                val sqrt2 = Math.sqrt(2.0).toFloat()
+                offer.animate()
+                    .apply {
+                        duration = 0
+                    }
+                    .translationY((w - (1 + sqrt2) * h) / (2 * sqrt2))
+                    .translationX(((sqrt2 - 1) * w + h) / (2 * sqrt2))
+                    .rotation(45f)
+            }
+        } else {
+            offer.isVisible = false
         }
     }
 
