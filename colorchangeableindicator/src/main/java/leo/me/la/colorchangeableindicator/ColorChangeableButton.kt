@@ -20,15 +20,9 @@ internal class ColorChangeableButton : Button, ColorChangeable {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
         : super(context, attrs, defStyleAttr)
 
-    override fun onColorChanged(
-        color: Int,
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int
-    ) {
+    override fun onColorChanged(color: Int) {
         background = getBackgroundDrawable(color)
     }
-
 
     private fun getBackgroundDrawable(defaultColor: Int)
         : RippleDrawable {

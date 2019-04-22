@@ -21,7 +21,8 @@ private val defaultIndicatorColors = listOf(
 const val defaultTriangleWidth = 50
 const val defaultTriangleHeight = 30
 
-class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPageChangeListener {
+class ColorChangeableIndicator
+    : LinearLayout, ColorChangeable, PageScrollObserver, ViewPager.OnPageChangeListener {
     private val colorEvaluator = ArgbEvaluator()
 
     private lateinit var button: ColorChangeableButton
@@ -118,22 +119,25 @@ class ColorChangeableIndicator : LinearLayout, ColorChangeable, ViewPager.OnPage
         val nextPageColor = indicatorColors[nextPage % indicatorColors.size]
 
         val color = colorEvaluator.evaluate(positionOffset, currentPageColor, nextPageColor) as Int
-        onColorChanged(color, position, positionOffset, positionOffsetPixels)
+        onColorChanged(color)
+        onPageScrolled(position, positionOffset)
     }
 
     override fun setOnClickListener(l: OnClickListener) = button.setOnClickListener(l)
 
     override fun onPageScrollStateChanged(state: Int) {}
 
-    override fun onColorChanged(
-        color: Int,
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int
-    ) {
+    override fun onColorChanged(color: Int) {
         forEach {
             if (it is ColorChangeable)
-                it.onColorChanged(color, position, positionOffset, positionOffsetPixels)
+                it.onColorChanged(color)
+        }
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float) {
+        forEach {
+            if (it is PageScrollObserver)
+                it.onPageScrolled(position, positionOffset)
         }
     }
 

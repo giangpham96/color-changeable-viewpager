@@ -8,7 +8,7 @@ import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.View
 
-internal class ColorChangeableArrow : View, ColorChangeable {
+internal class ColorChangeableArrow : View, ColorChangeable, PageScrollObserver {
     var adapter: ColorChangeablePagerAdapter? = null
 
     private val colorPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL }
@@ -48,14 +48,12 @@ internal class ColorChangeableArrow : View, ColorChangeable {
         triangle.draw(canvas, height)
     }
 
-    override fun onColorChanged(
-        color: Int,
-        position: Int,
-        positionOffset: Float,
-        positionOffsetPixels: Int
-    ) {
+    override fun onColorChanged(color: Int) {
+        colorPaint.color = color
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float) {
         adapter?.run {
-            colorPaint.color = color
             triangle.setBottomMidpointCoordinator(
                 width * ((position + positionOffset) * 2 + 1) / (count * 2),
                 0f
