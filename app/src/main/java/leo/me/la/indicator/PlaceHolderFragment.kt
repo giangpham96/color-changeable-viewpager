@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_place_holder.textview
 
 private const val ARG_TEXT = "text"
 
-class PlaceHolderFragment private constructor() : Fragment() {
+class PlaceHolderFragment : Fragment() {
     private lateinit var text: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
