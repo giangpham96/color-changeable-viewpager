@@ -5,18 +5,18 @@ plugins {
 }
 
 android {
-    compileSdkVersion(28)
+    compileSdkVersion(AndroidSettings.compileSdkVersion)
 
     defaultConfig {
         versionName = "0.0.1"
         versionCode = 1
 
-        minSdkVersion(21)
-        targetSdkVersion(28)
+        minSdkVersion(AndroidSettings.minSdkVersion)
+        targetSdkVersion(AndroidSettings.targetSdkVersion)
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = AndroidSettings.sourceCompatibility
+        targetCompatibility = AndroidSettings.targetCompatibility
     }
     buildTypes {
         getByName("debug") {
@@ -50,10 +50,10 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.30")
-    implementation("androidx.appcompat:appcompat:1.1.0-alpha04")
-    implementation("androidx.core:core-ktx:1.1.0-alpha05")
-    implementation("com.google.android.material:material:1.0.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation(Dependencies.appCompat)
+    implementation(Dependencies.constraintLayout)
+    implementation(Dependencies.kotlinStdLib)
+    implementation(Dependencies.ktx)
+    implementation(Dependencies.material)
     implementation(project(":colorchangeableviewpager"))
 }
