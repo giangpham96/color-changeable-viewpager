@@ -55,5 +55,5 @@ dependencies {
     implementation("androidx.core:core-ktx:1.1.0-alpha05")
     implementation("com.google.android.material:material:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
-    implementation(project(":colorchangeableindicator"))
+    implementation(project(":colorchangeableviewpager"))
 }

@@ -1,1 +1,1 @@
-include(":app", ":colorchangeableindicator")
+include(":app", ":colorchangeableviewpager")

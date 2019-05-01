@@ -1,4 +1,4 @@
-package leo.me.la.colorchangeableindicator
+package leo.me.la.colorchangeableviewpager
 
 import androidx.annotation.ColorInt
 

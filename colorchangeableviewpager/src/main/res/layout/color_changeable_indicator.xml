@@ -8,7 +8,7 @@
     android:focusable="true"
     android:clickable="true"
     >
-    <leo.me.la.colorchangeableindicator.ColorChangeableButton
+    <leo.me.la.colorchangeableviewpager.ColorChangeableButton
         android:id="@+id/button"
         android:textAllCaps="false"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:stateListAnimator="@null"
         android:minHeight="0dp"
         tools:text="Text"/>
-    <leo.me.la.colorchangeableindicator.ColorChangeableArrow
+    <leo.me.la.colorchangeableviewpager.ColorChangeableArrow
         android:id="@+id/downArrowIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

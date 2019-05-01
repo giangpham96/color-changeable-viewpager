@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.activity_main.indicatorBar
 import kotlinx.android.synthetic.main.activity_main.viewPager
-import leo.me.la.colorchangeableindicator.ColorChangeablePagerAdapter
+import leo.me.la.colorchangeableviewpager.ColorChangeablePagerAdapter
 
 private val dataSource = listOf(
     Pair(
