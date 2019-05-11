@@ -2,8 +2,10 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("com.github.dcendents.android-maven")
 }
 
+group = "com.github.giangpham96"
 android {
     compileSdkVersion(AndroidSettings.compileSdkVersion)
 
