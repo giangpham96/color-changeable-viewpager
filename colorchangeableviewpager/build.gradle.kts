@@ -8,7 +8,7 @@ android {
     compileSdkVersion(AndroidSettings.compileSdkVersion)
 
     defaultConfig {
-        versionName = "0.0.1"
+        versionName = "0.1.0"
         versionCode = 1
 
         minSdkVersion(AndroidSettings.minSdkVersion)
